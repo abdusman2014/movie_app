@@ -46,6 +46,7 @@ dependencies:
   youtube_player_flutter: ^8.1.2
   floor: ^1.4.2
   sqflite: ^2.2.8+4
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +79,7 @@ flutter:
   assets:
     - assets/animations/loading.json
     - assets/images/mock_backdrop.jpeg
+    - assets/images/hall_image.png
     - assets/images/loading.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

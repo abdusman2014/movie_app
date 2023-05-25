@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:movie_app/Presentation/Controller/movie_controller.dart';
+import 'package:movie_app/Presentation/View/Screens/seat_selection_screen.dart';
 import 'package:movie_app/Presentation/View/Screens/trailer_screen.dart';
 import 'package:movie_app/Presentation/View/Widgets/app_button.dart';
 import 'package:movie_app/Presentation/View/Widgets/app_space_component.dart';
@@ -32,7 +33,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
     // final List<int> gen = jsonDecode(widget.movie.genreIds);
     // print(gen);
     genres = Get.find<MovieController>()
-        .getGenresNamebyIds(jsonDecode(widget.movie.genreIds) );
+        .getGenresNamebyIds(jsonDecode(widget.movie.genreIds));
     releaseDate = DateTime.parse(widget.movie.releaseDate);
   }
 
@@ -123,7 +124,11 @@ class PortraitComponent extends StatelessWidget {
                             const AppSpaceComponent(),
                             AppButton(
                               text: "Get Tickets",
-                              onPress: () {},
+                              onPress: () {
+                                Get.to(SeatSelectionScreen(
+                                    movieTitle: movie.title,
+                                    movieDate: releaseDate));
+                              },
                             ),
                             const AppSpaceComponent(),
                             AppButton(

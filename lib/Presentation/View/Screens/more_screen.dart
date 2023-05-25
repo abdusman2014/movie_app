@@ -16,15 +16,11 @@ class MoreScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            Text(
-              "data",
-              style: Theme.of(context).textTheme.displayMedium,
-            ),
-            const Text("data"),
-            
-          ],
+        child: Center(
+          child: Text(
+            "More!",
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
         ),
       ),
     );

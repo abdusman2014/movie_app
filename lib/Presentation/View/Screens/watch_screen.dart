@@ -170,7 +170,7 @@ class SearchResults extends StatelessWidget {
                 itemCount: movies.length,
                 itemBuilder: (BuildContext context, int index) {
                   return SearchItemComponent(
-                    genre: jsonDecode(movies[index].genreIds) ,
+                    genre: jsonDecode(movies[index].genreIds),
                     backDropPath: movies[index].backdropPath,
                     title: movies[index].title,
                     onPress: () {

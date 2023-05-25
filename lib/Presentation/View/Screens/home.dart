@@ -13,7 +13,7 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> {
-  int selectedIndex = 0;
+  int selectedIndex = 1;
   void onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
@@ -24,7 +24,7 @@ class _MyHomeState extends State<MyHome> {
   Widget build(BuildContext context) {
      List<Widget> widgetOptions = <Widget>[
     const  DashBoardScreen(),
-      WatchScreen(),
+     const WatchScreen(),
      const MediaLibraryScreen(),
      const MoreScreen(),
     ];
