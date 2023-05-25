@@ -14,7 +14,7 @@ class SearchItemComponent extends StatefulWidget {
       required this.title,
       required this.backDropPath, required this.onPress});
   final String title;
-  final List<int> genre;
+  final List<dynamic> genre;
   final String backDropPath;
   final Function() onPress;
 
