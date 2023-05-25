@@ -1,3 +1,8 @@
+
+import 'package:dartz/dartz.dart';
+
+import '../../app/Config/errors.dart';
+
 abstract class MovieRepository {
-  Future<Map<dynamic, dynamic>> fetchGenre();
+  Future<Either<List,FetchError>> fetchGenre();
 }
