@@ -23,6 +23,7 @@ class MoreScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.displayMedium,
             ),
             const Text("data"),
+            
           ],
         ),
       ),

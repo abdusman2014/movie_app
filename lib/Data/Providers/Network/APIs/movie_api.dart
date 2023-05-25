@@ -16,4 +16,29 @@ class MovieApi {
       return const Right(FetchError.networkError());
     }
   }
+
+  Future<Either<Response<Map<String, dynamic>>, FetchError>>
+      fetchMovies() async {
+    try {
+      Response<Map<String, dynamic>> data =
+          await dio.get("/movie/upcoming?api_key=${Settings.apiKey}");
+      //  await Future.delayed(const Duration(seconds: 3));
+      return Left(data);
+    } catch (e) {
+      return const Right(FetchError.networkError());
+    }
+  }
+
+  Future<Either<Response<Map<String, dynamic>>, FetchError>> fetchVideo(
+      int movieId) async {
+    try {
+      Response<Map<String, dynamic>> data =
+          await dio.get("/movie/$movieId/videos?api_key=${Settings.apiKey}");
+      //  await Future.delayed(const Duration(seconds: 3));
+      return Left(data);
+    } catch (e) {
+      print(e);
+      return const Right(FetchError.networkError());
+    }
+  }
 }

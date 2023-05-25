@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:movie_app/Data/Repository_Impl/movie_repository_impl.dart';
 import 'package:movie_app/Domain/Repository/movie_repository.dart';
 import 'package:movie_app/Presentation/Controller/movie_controller.dart';
-import 'package:movie_app/Presentation/View/home.dart';
+import 'package:movie_app/app/Config/app_colors.dart';
+
+import 'Presentation/View/Screens/onboarding_screen.dart';
 
 void main() {
   Get.put<MovieRepository>(MovieRepositoryImpl());
@@ -44,10 +46,20 @@ class MyApp extends StatelessWidget {
                 //fontFamily: 'Poppins',
                 fontSize: 16.0,
                 fontWeight: FontWeight.w500),
-            titleLarge: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-            bodySmall: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w400),
+            titleLarge: TextStyle(
+              fontSize: 28.0,
+              fontWeight: FontWeight.w500,
+            ),
+            bodySmall: TextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.w600,
+            ),
+            bodyMedium: TextStyle(
+              fontSize: 14.0,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
-        home: const MyHome());
+        home: OnBoardingScreen());
   }
 }

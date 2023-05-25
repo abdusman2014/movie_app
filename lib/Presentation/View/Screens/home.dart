@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/Config/App_Colors.dart';
-import 'package:movie_app/Presentation/View/watch_screen.dart';
+import 'package:movie_app/Presentation/View/Screens/watch_screen.dart';
 
+import '../../../app/Config/app_colors.dart';
 import 'dashboard_screen.dart';
 import 'mediaLibrary_screen.dart';
 import 'more_screen.dart';
@@ -60,19 +60,19 @@ class BottomNavBar extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.dashboard),
+          icon: Icon(Icons.grid_view_rounded),
           label: 'Dashboard',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.watch),
+          icon: Icon(Icons.slideshow_rounded),
           label: 'Watch',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.school),
+          icon: Icon(Icons.collections),
           label: 'Media Library',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.more),
+          icon: Icon(Icons.list),
           label: 'More',
         ),
       ],
