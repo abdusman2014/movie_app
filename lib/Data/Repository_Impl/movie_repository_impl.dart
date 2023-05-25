@@ -4,6 +4,7 @@ import 'package:movie_app/Domain/Model/movie.dart';
 import 'package:movie_app/Domain/Model/movie_genre.dart';
 import 'package:movie_app/Domain/Repository/movie_repository.dart';
 import 'package:movie_app/app/Config/errors.dart';
+import 'package:movie_app/app/Services/local_storage.dart';
 
 import '../Providers/Network/APIs/movie_api.dart';
 
@@ -28,6 +29,7 @@ class MovieRepositoryImpl extends MovieRepository {
 
   @override
   Future<Either<List<Movie>, FetchError>> fetchMovies() async {
+   
     final Either<Response<Map<String, dynamic>>, FetchError> res =
         await MovieApi().fetchMovies();
     return res.fold((response) {

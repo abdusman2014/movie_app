@@ -14,4 +14,5 @@ class AppColors {
   static const lightGrey = 0xffDBDBDF;
   static const grey = 0xff8F8F8F;
   static const searchBarColor = 0xffF2F2F6;
+  static const golden = 0xffCD9D0F;
 }

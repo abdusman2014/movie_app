@@ -44,7 +44,6 @@ dependencies:
   intl: ^0.18.1
   tuple: ^2.0.1
   youtube_player_flutter: ^8.1.2
-  hive: ^2.2.3
 
 dev_dependencies:
   flutter_test:

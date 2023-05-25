@@ -4,17 +4,23 @@ import '../../../app/Config/app_colors.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton(
-      {super.key, this.isTransparent = false, required this.text, this.icon, required this.onPress});
+      {super.key,
+      this.isTransparent = false,
+      required this.text,
+      this.icon,
+      this.width = 300,
+      required this.onPress});
   final bool isTransparent;
   final String text;
   final Icon? icon;
   final VoidCallback onPress;
+  final double width;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPress,
       child: Container(
-        width: 300,
+         width: width,
         padding: const EdgeInsets.only(top: 15, bottom: 15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
