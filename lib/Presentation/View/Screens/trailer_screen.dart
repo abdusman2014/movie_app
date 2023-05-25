@@ -85,13 +85,7 @@ class _TrailerScreenState extends State<TrailerScreen> {
                 },
               ),
               builder: (context, player) {
-                return Column(
-                  children: [
-                    // some widgets
-                    player,
-                    //some other widgets
-                  ],
-                );
+                return player;
               });
         }
       })),

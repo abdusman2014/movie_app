@@ -44,6 +44,8 @@ dependencies:
   intl: ^0.18.1
   tuple: ^2.0.1
   youtube_player_flutter: ^8.1.2
+  floor: ^1.4.2
+  sqflite: ^2.2.8+4
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +60,7 @@ dev_dependencies:
   build_runner: ^2.4.4
   freezed: ^2.3.4
   json_serializable: ^6.7.0
+  floor_generator: ^1.4.2
   #json_serializable: 4.1.4
   #build_runner: ^2.1.5
 

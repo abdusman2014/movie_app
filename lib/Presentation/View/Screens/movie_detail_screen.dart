@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -27,8 +29,10 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   void initState() {
     super.initState();
     // TODO: implement initState
-    genres =
-        Get.find<MovieController>().getGenresNamebyIds(widget.movie.genreIds);
+    // final List<int> gen = jsonDecode(widget.movie.genreIds);
+    // print(gen);
+    genres = Get.find<MovieController>()
+        .getGenresNamebyIds(jsonDecode(widget.movie.genreIds) );
     releaseDate = DateTime.parse(widget.movie.releaseDate);
   }
 

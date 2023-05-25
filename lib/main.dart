@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movie_app/Data/Repository_Impl/movie_repository_impl.dart';
 import 'package:movie_app/Domain/Repository/movie_repository.dart';
 import 'package:movie_app/Presentation/Controller/movie_controller.dart';
-import 'package:movie_app/app/Services/local_storage.dart';
+import 'package:movie_app/app/Services/floor_storage.dart';
 import 'Presentation/View/Screens/onboarding_screen.dart';
 
 void main() async {
   Get.put<MovieRepository>(MovieRepositoryImpl());
   Get.put<MovieController>(MovieController());
-
+   await FloorStorage.initDatabase();
   runApp(const MyApp());
 }
 

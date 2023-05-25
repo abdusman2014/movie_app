@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_app/Domain/Model/movie.dart';
@@ -168,7 +170,7 @@ class SearchResults extends StatelessWidget {
                 itemCount: movies.length,
                 itemBuilder: (BuildContext context, int index) {
                   return SearchItemComponent(
-                    genre: movies[index].genreIds,
+                    genre: jsonDecode(movies[index].genreIds) ,
                     backDropPath: movies[index].backdropPath,
                     title: movies[index].title,
                     onPress: () {

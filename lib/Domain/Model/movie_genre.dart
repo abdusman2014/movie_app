@@ -1,9 +1,12 @@
+import 'package:floor/floor.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'movie_genre.g.dart';
 
+@entity
 @JsonSerializable()
 class Genre {
+  @PrimaryKey()
   int id;
   String name;
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:movie_app/Domain/Model/movie.dart';
@@ -15,7 +17,6 @@ class MovieController extends GetxController {
         await _movieRepo.fetchGenre() as Either<List<Genre>, FetchError>;
     //genres.value = data;
     return data.fold((genresVal) {
-      print('controller: ' + genresVal[1].name);
       genres.value = genresVal;
 
       return const Left(None());
@@ -29,7 +30,6 @@ class MovieController extends GetxController {
         await _movieRepo.fetchMovies() as Either<List<Movie>, FetchError>;
     //genres.value = data;
     return data.fold((moviesVal) {
-      print('controller: ' + moviesVal[1].title);
       movies.value = moviesVal;
 
       return const Left(None());
@@ -39,6 +39,7 @@ class MovieController extends GetxController {
   }
 
   Future<Either<None, FetchError>> fetchData() async {
+    
     final Either<None, FetchError> moviesResponse = await _fetchMovies();
 
     return moviesResponse.fold((none) async {
@@ -53,7 +54,7 @@ class MovieController extends GetxController {
     });
   }
 
-  List<Genre> getGenresNamebyIds(List<int> genreIds) {
+  List<Genre> getGenresNamebyIds(List<dynamic> genreIds) {
     //filtering all the genres have desired genreId
     return genres.where((element) {
       return genreIds.contains(element.id);
@@ -68,13 +69,13 @@ class MovieController extends GetxController {
     List<Movie> genreMovies = [];
     for (Genre genre in genres) {
       Movie? res = movies.firstWhere(
-        (element) => element.genreIds.contains(genre.id),
+        (element) => jsonDecode(element.genreIds).contains(genre.id),
         orElse: () {
           //dummy movie created that is only returned if that specific genre has no movies
           return Movie(
               adult: false,
               backdropPath: "backdropPath",
-              genreIds: [1],
+              genreIds: "[1]",
               id: -1,
               originalLanguage: "originalLanguage",
               originalTitle: "originalTitle",

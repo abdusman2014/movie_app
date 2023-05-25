@@ -1,15 +1,23 @@
+import 'dart:convert';
+
+import 'package:floor/floor.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 
 part 'movie.g.dart';
 
+@entity
 @JsonSerializable()
 class Movie {
   bool adult;
   @JsonKey(name: 'backdrop_path')
   String backdropPath;
   @JsonKey(name: 'genre_ids')
-  List<int> genreIds;
+  //actual type is List<int> but list can not be stored in floor database
+  //thats why storing this as json encoded string and decoding it back to List where needed
+  //the correct approch would be foriegn key approch but due to time shortage not able to implement it
+  String genreIds;
+  @PrimaryKey()
   int id;
   @JsonKey(name: 'original_language')
   String originalLanguage;
