@@ -66,7 +66,8 @@ class MovieController extends GetxController {
     // return movies.where((element) {
     //   return genres.contains(element.genreIds);
     // }).toList();
-    List<Movie> genreMovies = [];
+    List<Tuple2<String, String>> genreMovies = [];
+    
     for (Genre genre in genres) {
       Movie? res = movies.firstWhere(
         (element) => jsonDecode(element.genreIds).contains(genre.id),
@@ -91,15 +92,15 @@ class MovieController extends GetxController {
       );
       //donot add dummy movie to the list
       if (res.id != -1) {
-        genreMovies.add(res);
+        genreMovies.add(Tuple2<String, String>(res.backdropPath, genre.name));
       }
     }
-    List<Tuple2<String, String>> images = [];
-    for (Movie movie in genreMovies) {
-      images.add(Tuple2<String, String>(movie.backdropPath, movie.title));
-    }
+    // List<Tuple2<String, String>> images = [];
+    // for (Movie movie in genreMovies) {
+    //   images.add(Tuple2<String, String>(movie.backdropPath, movie.title));
+    // }
 
-    return images;
+    return genreMovies;
   }
 
   List<Movie> searchMovies(String text) {
