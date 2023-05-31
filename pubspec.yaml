@@ -81,6 +81,7 @@ flutter:
     - assets/images/mock_backdrop.jpeg
     - assets/images/hall_image.png
     - assets/images/loading.jpeg
+    - assets/images/seat_image.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

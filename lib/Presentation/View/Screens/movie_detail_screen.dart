@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:movie_app/Presentation/Controller/movie_controller.dart';
-import 'package:movie_app/Presentation/View/Screens/seat_selection_screen.dart';
+import 'package:movie_app/Presentation/View/Screens/hall_selection_screen.dart';
 import 'package:movie_app/Presentation/View/Screens/trailer_screen.dart';
 import 'package:movie_app/Presentation/View/Widgets/app_button.dart';
 import 'package:movie_app/Presentation/View/Widgets/app_space_component.dart';
@@ -125,7 +125,7 @@ class PortraitComponent extends StatelessWidget {
                             AppButton(
                               text: "Get Tickets",
                               onPress: () {
-                                Get.to(SeatSelectionScreen(
+                                Get.to(HallSelectionScreen(
                                     movieTitle: movie.title,
                                     movieDate: releaseDate));
                               },
@@ -276,7 +276,11 @@ class LandscapeComponent extends StatelessWidget {
                               children: [
                                 AppButton(
                                   text: "Get Tickets",
-                                  onPress: () {},
+                                  onPress: () {
+                                    Get.to(HallSelectionScreen(
+                                    movieTitle: movie.title,
+                                    movieDate: releaseDate));
+                                  },
                                   width: MediaQuery.of(context).size.width / 4 -
                                       50,
                                 ),

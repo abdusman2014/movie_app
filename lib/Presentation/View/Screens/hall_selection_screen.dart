@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:movie_app/Presentation/View/Screens/seat_selection_seat.dart';
 import 'package:movie_app/Presentation/View/Widgets/app_button.dart';
 import 'package:movie_app/Presentation/View/Widgets/app_space_component.dart';
 import 'package:movie_app/app/Config/app_colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class SeatSelectionScreen extends StatefulWidget {
- const SeatSelectionScreen(
+class HallSelectionScreen extends StatefulWidget {
+  const HallSelectionScreen(
       {super.key, required this.movieDate, required this.movieTitle});
   final String movieTitle;
   final DateTime movieDate;
-  
 
   @override
-  State<SeatSelectionScreen> createState() => _SeatSelectionScreenState();
+  State<HallSelectionScreen> createState() => _HallSelectionScreenState();
 }
 
-class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
+class _HallSelectionScreenState extends State<HallSelectionScreen> {
   final controller = PageController(viewportFraction: 0.95, keepPage: true);
   static const List<String> dates = [
     "5 Mar",
     "6 Mar",
     "7 Mar",
     "8 Mar",
-    "5 Mar",
-    "6 Mar",
-    "7 Mar",
-    "8 Mar"
+    "9 Mar",
+    "10 Mar",
+    "11 Mar",
+    "12 Mar"
   ];
   static const List<String> cenimaHalls = [
     "Cinetech + hall 1",
@@ -36,7 +37,20 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
     "Cinetech + hall 5",
     "Cinetech + hall 6",
   ];
-  
+  static String selectedDate = dates[0];
+  static String selectedHall = cenimaHalls[0];
+  int idx = 0;
+  onSelectDate(String date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
+
+  void onSelectHall(String hall) {
+    setState(() {
+      selectedHall = hall;
+    });
+  }
 
   final pages = List.generate(
       6,
@@ -49,7 +63,7 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
                     const Text(
                       "12:30",
                     ),
-                   const SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Text(
@@ -58,24 +72,30 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
                     ),
                   ],
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: const Color(AppColors.white),
-                    border:
-                        Border.all(color: const Color(AppColors.buttonColor)),
-                  ),
-                  margin: const EdgeInsets.only(
-                    right: 20,
-                    top: 4,
-                  ),
-                  child: SizedBox(
-                    height: 180,
-                    child: Center(
-                        child: Image.asset("assets/images/hall_image.png")),
+                GestureDetector(
+                  onTap: () {
+                    //onSelectHall(cenimaHalls[index]);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: const Color(AppColors.white),
+                      border: Border.all(
+                          color: Color((selectedHall == cenimaHalls[index])
+                              ? AppColors.buttonColor
+                              : AppColors.lightGrey)),
+                    ),
+                    margin: const EdgeInsets.only(
+                      right: 20,
+                      top: 4,
+                    ),
+                    child: SizedBox(
+                      height: 180,
+                      child: Center(
+                          child: Image.asset("assets/images/hall_image.png")),
+                    ),
                   ),
                 ),
-                
               ],
             ),
           ));
@@ -116,26 +136,33 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
               style: Theme.of(context).textTheme.displayMedium,
             ),
             const AppSpaceComponent(),
-            Container(
+            SizedBox(
               height: 30,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: dates.map((date) {
-                  return Container(
-                    padding: const EdgeInsets.only(
-                        top: 6, bottom: 6, left: 12, right: 12),
-                    margin: const EdgeInsets.only(right: 7),
-                    //color: Color(AppColors.genresColor[3]),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: const Color(AppColors.buttonColor),
-                    ),
-                    child: Text(
-                      date,
-                      style: Theme.of(context)
-                          .textTheme
-                          .displayMedium!
-                          .apply(color: const Color(AppColors.white)),
+                  return GestureDetector(
+                    onTap: () {
+                      onSelectDate(date);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.only(
+                          top: 6, bottom: 6, left: 12, right: 12),
+                      margin: const EdgeInsets.only(right: 7),
+                      //color: Color(AppColors.genresColor[3]),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Color((selectedDate == date)
+                            ? AppColors.buttonColor
+                            : AppColors.searchBarColor),
+                      ),
+                      child: Text(
+                        date,
+                        style: Theme.of(context).textTheme.displayMedium!.apply(
+                            color: Color((selectedDate == date)
+                                ? AppColors.white
+                                : AppColors.black)),
+                      ),
                     ),
                   );
                 }).toList(),
@@ -162,7 +189,16 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
               ),
             ),
             Flexible(child: Container()),
-            AppButton(text: "Select Seats", onPress: (){},width: MediaQuery.of(context).size.width,),
+            AppButton(
+              text: "Select Seats",
+              onPress: () {
+                print("press");
+                Get.to(SeatSelectionScreen(
+                    movieDate: widget.movieDate,
+                    movieTitle: widget.movieTitle));
+              },
+              width: MediaQuery.of(context).size.width,
+            ),
           ],
         ),
       ),
