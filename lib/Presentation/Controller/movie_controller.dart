@@ -39,7 +39,6 @@ class MovieController extends GetxController {
   }
 
   Future<Either<None, FetchError>> fetchData() async {
-    
     final Either<None, FetchError> moviesResponse = await _fetchMovies();
 
     return moviesResponse.fold((none) async {
@@ -67,7 +66,7 @@ class MovieController extends GetxController {
     //   return genres.contains(element.genreIds);
     // }).toList();
     List<Tuple2<String, String>> genreMovies = [];
-    
+
     for (Genre genre in genres) {
       Movie? res = movies.firstWhere(
         (element) => jsonDecode(element.genreIds).contains(genre.id),
@@ -104,14 +103,14 @@ class MovieController extends GetxController {
   }
 
   List<Movie> searchMovies(String text) {
-    return movies
-        .where((element) => element.title.toLowerCase().contains(text))
-        .toList();
+    return movies.where((element) =>
+       element.title.toLowerCase().contains(text.toLowerCase())
+    ).toList();
   }
 
   Future<Either<String, FetchError>> fetchVideo(int movieId) async {
     final Either<String, FetchError> res = await _movieRepo.fetchVideo(movieId);
-   return res.fold((video) {
+    return res.fold((video) {
       return Left(video);
     }, (error) {
       return Right(error);
